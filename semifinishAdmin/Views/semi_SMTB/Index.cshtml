@@ -1,0 +1,45 @@
+﻿@model IEnumerable<semifinishAdmin.Models.siixsem_semi_smtb_td>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="window">
+    <div class="window-title">SMTB MODELS</div>
+    <div class="window-content">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table id="tblSMTB" class="table table-striped table-bordered" style="width:100%;font-size:12px;">
+            <thead>
+                <tr>
+                    <th>PROGRAMA COGISCAN</th>
+                    <th>MODELO</th>
+                    <th>SEMIFINISH</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.siixsem_cgs_programs_t.se_description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.siixsem_models_t.se_description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.siixsem_semifinish_t.se_description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.se_id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.se_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.se_id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

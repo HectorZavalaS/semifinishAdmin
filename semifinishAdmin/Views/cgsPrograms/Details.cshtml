@@ -1,0 +1,33 @@
+﻿@model semifinishAdmin.Models.siixsem_cgs_programs_t
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="window" style="width:600px;">
+    <div class="window-title">DETALLE PROGRAMA COGISCAN</div>
+    <div class="window-content">
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>Programa:</dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.se_description)
+                </dd>
+
+                <dt>BIN:</dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.se_bin)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.se_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

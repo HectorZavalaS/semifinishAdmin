@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="siixsem_wip_config_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="siixsem_cgs_programs_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_description" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="se_bin" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_models_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="se_serial_pn_1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="se_serial_pn_2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="se_serial_pn_3" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="se_serial_pn_4" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="se_serial_pn_5" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="se_created_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_fg_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_id_model" Type="int" Nullable="false" />
+          <Property Name="se_id_fg" Type="int" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_manu_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_id_model" Type="int" Nullable="false" />
+          <Property Name="se_id_manu" Type="int" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_smtb_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_id_model" Type="int" Nullable="false" />
+          <Property Name="se_id_smtb" Type="int" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_smtt_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_id_model" Type="int" Nullable="false" />
+          <Property Name="se_id_smtt" Type="int" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_semifinish_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="se_linkage_seq" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_fg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_manu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_smtt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_smtb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siixsem_wip_config_dbModelStoreContainer">
+          <EntitySet Name="siixsem_cgs_programs_t" EntityType="Self.siixsem_cgs_programs_t" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_models_t" EntityType="Self.siixsem_models_t" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_semi_fg_td" EntityType="Self.siixsem_semi_fg_td" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_semi_manu_td" EntityType="Self.siixsem_semi_manu_td" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_semi_smtb_td" EntityType="Self.siixsem_semi_smtb_td" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_semi_smtt_td" EntityType="Self.siixsem_semi_smtt_td" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_semifinish_t" EntityType="Self.siixsem_semifinish_t" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_models_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_models_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_models_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_models_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siixsem_wip_config_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="siixsem_cgs_programs_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_bin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="siixsem_semi_fg_td" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_cgs_programs_t" FromRole="siixsem_cgs_programs_t" ToRole="siixsem_semi_fg_td" />
+          <NavigationProperty Name="siixsem_semi_manu_td" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_cgs_programs_t" FromRole="siixsem_cgs_programs_t" ToRole="siixsem_semi_manu_td" />
+          <NavigationProperty Name="siixsem_semi_smtt_td" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_cgs_programs_t" FromRole="siixsem_cgs_programs_t" ToRole="siixsem_semi_smtt_td" />
+          <NavigationProperty Name="siixsem_semi_smtb_td" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t" FromRole="siixsem_cgs_programs_t" ToRole="siixsem_semi_smtb_td" />
+        </EntityType>
+        <EntityType Name="siixsem_models_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_serial_pn_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_serial_pn_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_serial_pn_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_serial_pn_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_serial_pn_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="siixsem_semi_fg_td" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_models_t" FromRole="siixsem_models_t" ToRole="siixsem_semi_fg_td" />
+          <NavigationProperty Name="siixsem_semi_manu_td" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_models_t" FromRole="siixsem_models_t" ToRole="siixsem_semi_manu_td" />
+          <NavigationProperty Name="siixsem_semi_smtt_td" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_models_t" FromRole="siixsem_models_t" ToRole="siixsem_semi_smtt_td" />
+          <NavigationProperty Name="siixsem_semi_smtb_td" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_models_t" FromRole="siixsem_models_t" ToRole="siixsem_semi_smtb_td" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_fg_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_id_model" Type="Int32" Nullable="false" />
+          <Property Name="se_id_fg" Type="Int32" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_cgs_programs_t" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_cgs_programs_t" FromRole="siixsem_semi_fg_td" ToRole="siixsem_cgs_programs_t" />
+          <NavigationProperty Name="siixsem_models_t" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_models_t" FromRole="siixsem_semi_fg_td" ToRole="siixsem_models_t" />
+          <NavigationProperty Name="siixsem_semifinish_t" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_semifinish_t" FromRole="siixsem_semi_fg_td" ToRole="siixsem_semifinish_t" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_manu_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_id_model" Type="Int32" Nullable="false" />
+          <Property Name="se_id_manu" Type="Int32" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_cgs_programs_t" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_cgs_programs_t" FromRole="siixsem_semi_manu_td" ToRole="siixsem_cgs_programs_t" />
+          <NavigationProperty Name="siixsem_models_t" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_models_t" FromRole="siixsem_semi_manu_td" ToRole="siixsem_models_t" />
+          <NavigationProperty Name="siixsem_semifinish_t" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_semifinish_t" FromRole="siixsem_semi_manu_td" ToRole="siixsem_semifinish_t" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_smtb_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_id_model" Type="Int32" Nullable="false" />
+          <Property Name="se_id_smtb" Type="Int32" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_cgs_programs_t" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t" FromRole="siixsem_semi_smtb_td" ToRole="siixsem_cgs_programs_t" />
+          <NavigationProperty Name="siixsem_models_t" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_models_t" FromRole="siixsem_semi_smtb_td" ToRole="siixsem_models_t" />
+          <NavigationProperty Name="siixsem_semifinish_t" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_semifinish_t" FromRole="siixsem_semi_smtb_td" ToRole="siixsem_semifinish_t" />
+        </EntityType>
+        <EntityType Name="siixsem_semi_smtt_td">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_id_model" Type="Int32" Nullable="false" />
+          <Property Name="se_id_smtt" Type="Int32" Nullable="false" />
+          <Property Name="se_id_cgs_prg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_cgs_programs_t" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_cgs_programs_t" FromRole="siixsem_semi_smtt_td" ToRole="siixsem_cgs_programs_t" />
+          <NavigationProperty Name="siixsem_models_t" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_models_t" FromRole="siixsem_semi_smtt_td" ToRole="siixsem_models_t" />
+          <NavigationProperty Name="siixsem_semifinish_t" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_semifinish_t" FromRole="siixsem_semi_smtt_td" ToRole="siixsem_semifinish_t" />
+        </EntityType>
+        <EntityType Name="siixsem_semifinish_t">
+          <Key>
+            <PropertyRef Name="se_id" />
+          </Key>
+          <Property Name="se_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="se_linkage_seq" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_semi_fg_td" Relationship="Self.FK_siixsem_semi_fg_td_siixsem_semifinish_t" FromRole="siixsem_semifinish_t" ToRole="siixsem_semi_fg_td" />
+          <NavigationProperty Name="siixsem_semi_manu_td" Relationship="Self.FK_siixsem_semi_manu_td_siixsem_semifinish_t" FromRole="siixsem_semifinish_t" ToRole="siixsem_semi_manu_td" />
+          <NavigationProperty Name="siixsem_semi_smtb_td" Relationship="Self.FK_siixsem_semi_smtb_td_siixsem_semifinish_t" FromRole="siixsem_semifinish_t" ToRole="siixsem_semi_smtb_td" />
+          <NavigationProperty Name="siixsem_semi_smtt_td" Relationship="Self.FK_siixsem_semi_smt_td_siixsem_semifinish_t" FromRole="siixsem_semifinish_t" ToRole="siixsem_semi_smtt_td" />
+        </EntityType>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t">
+          <End Role="siixsem_cgs_programs_t" Type="Self.siixsem_cgs_programs_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_programs_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_cgs_prg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_models_t">
+          <End Role="siixsem_models_t" Type="Self.siixsem_models_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_models_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_fg_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_fg_td" Type="Self.siixsem_semi_fg_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_fg_td">
+              <PropertyRef Name="se_id_fg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_manu_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_manu_td" Type="Self.siixsem_semi_manu_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_manu_td">
+              <PropertyRef Name="se_id_manu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smtb_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtb_td" Type="Self.siixsem_semi_smtb_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtb_td">
+              <PropertyRef Name="se_id_smtb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siixsem_semi_smt_td_siixsem_semifinish_t">
+          <End Role="siixsem_semifinish_t" Type="Self.siixsem_semifinish_t" Multiplicity="1" />
+          <End Role="siixsem_semi_smtt_td" Type="Self.siixsem_semi_smtt_td" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_semifinish_t">
+              <PropertyRef Name="se_id" />
+            </Principal>
+            <Dependent Role="siixsem_semi_smtt_td">
+              <PropertyRef Name="se_id_smtt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siixsem_wip_config_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="siixsem_cgs_programs_t" EntityType="Self.siixsem_cgs_programs_t" />
+          <EntitySet Name="siixsem_models_t" EntityType="Self.siixsem_models_t" />
+          <EntitySet Name="siixsem_semi_fg_td" EntityType="Self.siixsem_semi_fg_td" />
+          <EntitySet Name="siixsem_semi_manu_td" EntityType="Self.siixsem_semi_manu_td" />
+          <EntitySet Name="siixsem_semi_smtb_td" EntityType="Self.siixsem_semi_smtb_td" />
+          <EntitySet Name="siixsem_semi_smtt_td" EntityType="Self.siixsem_semi_smtt_td" />
+          <EntitySet Name="siixsem_semifinish_t" EntityType="Self.siixsem_semifinish_t" />
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t">
+            <End Role="siixsem_cgs_programs_t" EntitySet="siixsem_cgs_programs_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_models_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_models_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_models_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_models_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_models_t">
+            <End Role="siixsem_models_t" EntitySet="siixsem_models_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_fg_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_fg_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_fg_td" EntitySet="siixsem_semi_fg_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_manu_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_manu_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_manu_td" EntitySet="siixsem_semi_manu_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smtb_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_smtb_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_smtb_td" EntitySet="siixsem_semi_smtb_td" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siixsem_semi_smt_td_siixsem_semifinish_t" Association="Self.FK_siixsem_semi_smt_td_siixsem_semifinish_t">
+            <End Role="siixsem_semifinish_t" EntitySet="siixsem_semifinish_t" />
+            <End Role="siixsem_semi_smtt_td" EntitySet="siixsem_semi_smtt_td" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siixsem_wip_config_dbModelStoreContainer" CdmEntityContainer="siixsem_wip_config_dbEntities">
+          <EntitySetMapping Name="siixsem_cgs_programs_t">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_cgs_programs_t">
+              <MappingFragment StoreEntitySet="siixsem_cgs_programs_t">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_description" ColumnName="se_description" />
+                <ScalarProperty Name="se_bin" ColumnName="se_bin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_models_t">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_models_t">
+              <MappingFragment StoreEntitySet="siixsem_models_t">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_description" ColumnName="se_description" />
+                <ScalarProperty Name="se_serial_pn_1" ColumnName="se_serial_pn_1" />
+                <ScalarProperty Name="se_serial_pn_2" ColumnName="se_serial_pn_2" />
+                <ScalarProperty Name="se_serial_pn_3" ColumnName="se_serial_pn_3" />
+                <ScalarProperty Name="se_serial_pn_4" ColumnName="se_serial_pn_4" />
+                <ScalarProperty Name="se_serial_pn_5" ColumnName="se_serial_pn_5" />
+                <ScalarProperty Name="se_created_date" ColumnName="se_created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_semi_fg_td">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_semi_fg_td">
+              <MappingFragment StoreEntitySet="siixsem_semi_fg_td">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_id_model" ColumnName="se_id_model" />
+                <ScalarProperty Name="se_id_fg" ColumnName="se_id_fg" />
+                <ScalarProperty Name="se_id_cgs_prg" ColumnName="se_id_cgs_prg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_semi_manu_td">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_semi_manu_td">
+              <MappingFragment StoreEntitySet="siixsem_semi_manu_td">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_id_model" ColumnName="se_id_model" />
+                <ScalarProperty Name="se_id_manu" ColumnName="se_id_manu" />
+                <ScalarProperty Name="se_id_cgs_prg" ColumnName="se_id_cgs_prg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_semi_smtb_td">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_semi_smtb_td">
+              <MappingFragment StoreEntitySet="siixsem_semi_smtb_td">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_id_model" ColumnName="se_id_model" />
+                <ScalarProperty Name="se_id_smtb" ColumnName="se_id_smtb" />
+                <ScalarProperty Name="se_id_cgs_prg" ColumnName="se_id_cgs_prg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_semi_smtt_td">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_semi_smtt_td">
+              <MappingFragment StoreEntitySet="siixsem_semi_smtt_td">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_id_model" ColumnName="se_id_model" />
+                <ScalarProperty Name="se_id_smtt" ColumnName="se_id_smtt" />
+                <ScalarProperty Name="se_id_cgs_prg" ColumnName="se_id_cgs_prg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_semifinish_t">
+            <EntityTypeMapping TypeName="siixsem_wip_config_dbModel.siixsem_semifinish_t">
+              <MappingFragment StoreEntitySet="siixsem_semifinish_t">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_description" ColumnName="se_description" />
+                <ScalarProperty Name="se_linkage_seq" ColumnName="se_linkage_seq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

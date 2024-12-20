@@ -1,0 +1,33 @@
+﻿@model semifinishAdmin.Models.siixsem_semifinish_t
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="window" style="width:600px;">
+    <div class="window-title">DETALLE SEMIFINISH</div>
+    <div class="window-content">
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>Semifinish:</dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.se_description)
+                </dd>
+
+                <dt>Linkage Seq:</dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.se_linkage_seq)
+                </dd>
+
+            </dl>
+        </div>
+        <hr />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.se_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

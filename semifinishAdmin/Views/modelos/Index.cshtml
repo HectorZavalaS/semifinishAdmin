@@ -1,0 +1,61 @@
+﻿@model IEnumerable<semifinishAdmin.Models.siixsem_models_t>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="window">
+    <div class="window-title">MODELOS</div>
+    <div class="window-content">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table id="tblModelos" class="table table-striped table-bordered" style="width:100%;font-size:12px;">
+            <thead>
+                <tr>
+                    <th>MODELO</th>
+                    <th>SERIAL 1</th>
+                    <th>SERIAL 2</th>
+                    <th>SERIAL 3</th>
+                    <th>SERIAL 4</th>
+                    <th>SERIAL 5</th>
+                    <th>CREATION DATE</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_serial_pn_1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_serial_pn_2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_serial_pn_3)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_serial_pn_4)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_serial_pn_5)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.se_created_date)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.se_id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.se_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.se_id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

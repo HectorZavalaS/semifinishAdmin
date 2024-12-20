@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1e7bbc046fd40cf9a1ee0c267e326f5" Name="Diagram1">
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_cgs_programs_t" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_models_t" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_semi_fg_td" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_semi_manu_td" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_semi_smtb_td" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_semi_smtt_td" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="siixsem_wip_config_dbModel.siixsem_semifinish_t" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_fg_td_siixsem_cgs_programs_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_manu_td_siixsem_cgs_programs_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smt_td_siixsem_cgs_programs_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smtb_td_siixsem_cgs_programs_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_fg_td_siixsem_models_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_manu_td_siixsem_models_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smt_td_siixsem_models_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smtb_td_siixsem_models_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_fg_td_siixsem_semifinish_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_manu_td_siixsem_semifinish_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smtb_td_siixsem_semifinish_t" ManuallyRouted="false" />
+        <AssociationConnector Association="siixsem_wip_config_dbModel.FK_siixsem_semi_smt_td_siixsem_semifinish_t" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

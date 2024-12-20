@@ -1,0 +1,43 @@
+﻿@model semifinishAdmin.Models.siixsem_models_t
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="window" style="width:600px;">
+    <div class="window-title">DETALLE MODELO</div>
+    <div class="window-content">
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dd>@Html.DisplayFor(model => model.se_description)</dd>
+                <hr />
+                <dt>SERIAL 1:</dt>
+                <dd>@Html.DisplayFor(model => model.se_serial_pn_1)</dd>
+
+                <dt>SERIAL 2:</dt>
+                <dd>@Html.DisplayFor(model => model.se_serial_pn_2)</dd>
+
+                <dt>SERIAL 3:</dt>
+                <dd>@Html.DisplayFor(model => model.se_serial_pn_3)</dd>
+
+                <dt>SERIAL 4:</dt>
+                <dd>@Html.DisplayFor(model => model.se_serial_pn_4)</dd>
+
+                <dt>SERIAL 5:</dt>
+                <dd>@Html.DisplayFor(model => model.se_serial_pn_5)</dd>
+
+                <dt>FECHA DE CREACION:</dt>
+                <dd>@Html.DisplayFor(model => model.se_created_date)</dd>
+
+            </dl>
+        </div>
+        <hr />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.se_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
